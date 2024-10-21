@@ -29,5 +29,7 @@ public class Episode {
         } catch (DateTimeParseException ex) {
             this.dataLancamento = null;
         }
+
+
     }
 }
