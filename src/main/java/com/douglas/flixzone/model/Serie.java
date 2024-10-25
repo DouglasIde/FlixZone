@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 
+import org.hibernate.annotations.DialectOverride.OverridesAnnotation;
+
 @Getter
 @Setter
 @Entity
@@ -47,5 +49,17 @@ public class Serie {
         this.genero = Category.fromString(dataSeries.genero().split(",")[0].trim());
         this.atores = dataSeries.atores();
         this.posters = dataSeries.posters();
+    }
+
+    @Override
+    public String toString(){
+        return
+            "genero=" + genero +
+            ", titulo='" + titulo + '\'' +
+            ", totalTemporadas=" + totalTemporadas +
+            ", avaliacao=" + avaliacao +
+            ", atores='" + atores + '\'' +
+            ", posters='" + posters + '\'';
+            ", episodios='" + episodios + '\'';
     }
 }
