@@ -45,7 +45,7 @@ public class Serie {
     public Serie(DataSeries dataSeries){
         this.titulo = dataSeries.titulo();
         this.totalTemporadas = dataSeries.temporadas();
-        this.avaliacao = OptionalDouble.of(Double.valueOf(dataSeries.avaliacao()).orElse(0));
+        this.avaliacao = OptionalDouble.of(Double.valueOf(dataSeries.avaliacao())).orElse(0);
         this.genero = Category.fromString(dataSeries.genero().split(",")[0].trim());
         this.atores = dataSeries.atores();
         this.posters = dataSeries.posters();
@@ -60,6 +60,5 @@ public class Serie {
             ", avaliacao=" + avaliacao +
             ", atores='" + atores + '\'' +
             ", posters='" + posters + '\'';
-            ", episodios='" + episodios + '\'';
     }
 }

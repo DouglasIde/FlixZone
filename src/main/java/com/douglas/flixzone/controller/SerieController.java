@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SerieController {
     
-    // @Autowired
-    // private 
-
     @GetMapping("/series")
     public List<DataSeries> getSeries(@RequestParam String param) {
         return "Aqui vão as séries para o parâmetro " + param;
