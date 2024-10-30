@@ -32,6 +32,7 @@ public class Episode {
     private LocalDate dataLancamento;
     
     @ManyToOne
+    
     private Serie series;
 
     public Episode(Integer numeroTemporada, DataEpisode dadosEpisodio) {
