@@ -21,14 +21,14 @@ public interface SerieRepository extends JpaRepository<Serie, Long>{
     List<Serie> findByGenero(Category categoria);
 
     List<Serie> findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(int totalTemporadas, Double avaliacao);
-    @Query("SELECT s FROM Series s WHERE s.totalTemporadas <= :totalTemporadas AND s.avaliacao >= :avaliacao")
+    @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.avaliacao >= :avaliacao")
     List<Serie> seriesPorTemporadaEAvaliacao(int totalTemporadas, Double avaliacao);
-    @Query("SELECT e FROM Series e JOIN s.episodios e WHERE e.titulo ILIKE %:trechoEpisodio%")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo LIKE %:trechoEpisodio%")
     List<Episode> episodiosPorTrecho(String trechoEpisodio);
 
-    @Query("SELECT e FROM Series s JOIN s.episodios e WHERE s = :serie ORDER BY e.avaliacao DESC LIMIT 5")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.avaliacao DESC")
     List<Episode> findTopEpisodiosPorSerie(Serie serie);
 
-    @Query("SELECT e FROM Series s JOIN s.episodios e WHERE s = :serie AND YEAR(e.dataLancamento) >= :anoLancamento")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie AND YEAR(e.dataLancamento) >= :anoLancamento")
     List<Episode> episodiosPorSerieEAno(Serie serie, int anoLancamento);
 }
