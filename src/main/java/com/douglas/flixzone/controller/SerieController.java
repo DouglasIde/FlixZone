@@ -4,7 +4,7 @@ import com.douglas.flixzone.dto.SerieDTO;
 import com.douglas.flixzone.model.Serie;
 import com.douglas.flixzone.service.SerieService;
 import lombok.Getter;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.douglas.flixzone.repository.SerieRepository;
 
@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
@@ -38,5 +35,10 @@ public class SerieController {
     @GetMapping("/lancamentos")
     public List<SerieDTO> lancamentos(){
         return service.getLancamentos();
+    }
+
+    @GetMapping("/{id}")
+    public SerieDTO getByID(@PathVariable Long id){
+        return service.getByID(id);
     }
 }

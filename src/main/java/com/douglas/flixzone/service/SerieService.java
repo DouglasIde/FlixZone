@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +18,10 @@ public class SerieService {
 
     public List<SerieDTO> getAllSeries(){
         return convertData(repository.findAll());
+    }
+
+    public SerieDTO getByID(Long id){
+        return new SerieDTO(repository.findById(id).orElseThrow());
     }
 
     public List<SerieDTO> getTop5Series(){
