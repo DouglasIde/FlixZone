@@ -2,6 +2,7 @@ package com.douglas.flixzone.service;
 
 import com.douglas.flixzone.dto.EpisodeDTO;
 import com.douglas.flixzone.dto.SerieDTO;
+import com.douglas.flixzone.model.Category;
 import com.douglas.flixzone.model.Serie;
 import com.douglas.flixzone.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,12 @@ public class SerieService {
                 .collect(Collectors.toList());
     }
 
+    public List<SerieDTO> getByCategory(String nomeGenero){
+        Category categoria = Category.fromPortuguese(nomeGenero);
+        return convertData(repository.findByGenero(categoria));
+    }
+
     private List<SerieDTO> convertData(List<Serie> series){
         return series.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
-
 }
