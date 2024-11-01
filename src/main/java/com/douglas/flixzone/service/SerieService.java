@@ -45,6 +45,12 @@ public class SerieService {
         return List.of();
     }
 
+    public List<EpisodeDTO> getSeasonByNumber(Long id, Integer numero){
+        return repository.obterEpisodiosPorTemporada(id, numero).stream()
+                .map(e -> new EpisodeDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
     private List<SerieDTO> convertData(List<Serie> series){
         return series.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
