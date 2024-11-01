@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SerieController {
 
-
     @Autowired
     private SerieService service;
 
@@ -31,8 +30,8 @@ public class SerieController {
         return service.getAllSeries();
     }
 
-    @GetMapping("/start")
-    public String returnStart(){
-        return "API started";
+    @GetMapping("/series/top5")
+    public List<SerieDTO> top5Series(){
+        return service.getTop5Series();
     }
 }

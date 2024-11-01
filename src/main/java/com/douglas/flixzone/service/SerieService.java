@@ -16,7 +16,14 @@ public class SerieService {
     private SerieRepository repository;
 
     public List<SerieDTO> getAllSeries(){
-        List<Serie> series = repository.findAll();
+        return convertData(repository.findAll());
+    }
+
+    public List<SerieDTO> getTop5Series(){
+        return convertData((repository.findTop5ByOrderByAvaliacaoDesc()));
+    }
+
+    private List<SerieDTO> convertData(List<Serie> series){
         return series.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
 }
