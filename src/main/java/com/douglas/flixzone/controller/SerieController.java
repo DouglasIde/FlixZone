@@ -34,7 +34,7 @@ public class SerieController {
 
     @GetMapping("/lancamentos")
     public List<SerieDTO> lancamentos(){
-        return service.getLancamentos();
+        return service.getRelease();
     }
 
     @GetMapping("/{id}")

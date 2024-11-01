@@ -28,8 +28,8 @@ public class SerieService {
         return convertData((repository.findTop5ByOrderByAvaliacaoDesc()));
     }
 
-    public List<SerieDTO> getLancamentos(){
-        return convertData(repository.findTop5ByOrderByEpisodeDataLancamentoDesc());
+    public List<SerieDTO> getRelease(){
+        return convertData(repository.latestRelease());
     }
 
     private List<SerieDTO> convertData(List<Serie> series){
