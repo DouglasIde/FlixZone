@@ -1,5 +1,6 @@
 package com.douglas.flixzone.service;
 
+import com.douglas.flixzone.dto.EpisodeDTO;
 import com.douglas.flixzone.dto.SerieDTO;
 import com.douglas.flixzone.model.Serie;
 import com.douglas.flixzone.repository.SerieRepository;
@@ -30,6 +31,18 @@ public class SerieService {
 
     public List<SerieDTO> getRelease(){
         return convertData(repository.latestRelease());
+    }
+
+    public List<EpisodeDTO> getAllSeasons(Long id) {
+        Optional<Serie> serie = repository.findById(id);
+        if(serie.isPresent()) {
+            Serie s = serie.get();
+            return s.getEpisodios().stream()
+                    .map(e -> new EpisodeDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                    .collect(Collectors.toList());
+
+        }
+        return List.of();
     }
 
     private List<SerieDTO> convertData(List<Serie> series){

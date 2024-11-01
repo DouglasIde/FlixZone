@@ -1,5 +1,6 @@
 package com.douglas.flixzone.controller;
 
+import com.douglas.flixzone.dto.EpisodeDTO;
 import com.douglas.flixzone.dto.SerieDTO;
 import com.douglas.flixzone.model.Serie;
 import com.douglas.flixzone.service.SerieService;
@@ -40,5 +41,10 @@ public class SerieController {
     @GetMapping("/{id}")
     public SerieDTO getByID(@PathVariable Long id){
         return service.getByID(id);
+    }
+
+    @GetMapping("/{id}/temporadas/all")
+    public List<EpisodeDTO> getAllSeasons(@PathVariable Long id){
+        return service.getAllSeasons(id);
     }
 }
