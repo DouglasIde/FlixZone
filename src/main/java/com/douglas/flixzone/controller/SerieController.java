@@ -2,6 +2,8 @@ package com.douglas.flixzone.controller;
 
 import com.douglas.flixzone.dto.SerieDTO;
 import com.douglas.flixzone.model.Serie;
+import com.douglas.flixzone.service.SerieService;
+import lombok.Getter;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douglas.flixzone.repository.SerieRepository;
@@ -20,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SerieController {
 
+
     @Autowired
-    private SerieRepository repository;
-    
+    private SerieService service;
+
     @GetMapping("/series")
     public List<SerieDTO> obterSeries(){
-        List<Serie> series = repository.findAll();
-        List<SerieDTO> seriesDTO = series.stream().map(SerieDTO::new).collect(Collectors.toList());
-        return seriesDTO;
+        return service.getAllSeries();
+    }
+
+    @GetMapping("/start")
+    public String returnStart(){
+        return "API started";
     }
 }
